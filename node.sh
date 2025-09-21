@@ -3611,10 +3611,13 @@ sudo bash zex-tunnel-install.sh
                 curl -L -o mtp_install.sh https://git.io/fj5ru && bash mtp_install.sh
                 ;;
 			78) 
-                echo -e "${YELLOW}Running ovpn-admin...${NC}"
-                git clone https://github.com/palark/ovpn-admin.git
-cd ovpn-admin
-./start.sh
+    echo -e "${YELLOW}Running ovpn-admin...${NC}"
+    if [ ! -d "ovpn-admin" ]; then
+        git clone https://github.com/palark/ovpn-admin.git
+    fi
+    cd ovpn-admin || exit
+    ./start.sh
+    ;;
 79) 
                 echo -e "${YELLOW}Running Pingtunnel Manager...${NC}"
 				sleep 1
